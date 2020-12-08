@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import { Dropzone, GalleryOptions } from '../components'
+import { Dropzone, GalleryOptions, Gallery } from '../components'
 import css from './index.less'
 
 export default function Home() {
+    const [started, setStarted] = useState()
     const [interval, setInterval] = useState()
+    const [files, setFiles] = useState([])
 
     function handleOptionChange(option, value) {
         option === 'interval' && setInterval(value)
@@ -18,8 +20,17 @@ export default function Home() {
             </Head>
 
             <main className={css.main}>
-                <Dropzone />
-                <GalleryOptions handleOptionChange={handleOptionChange} />
+                {started ? (
+                    <Gallery files={files} />
+                ) : (
+                    <Dropzone files={files} setFiles={setFiles} />
+                )}
+
+                <GalleryOptions
+                    handleOptionChange={handleOptionChange}
+                    setStarted={setStarted}
+                    started={started}
+                />
             </main>
         </div>
     )

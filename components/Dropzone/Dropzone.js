@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import css from './Dropzone.less'
 
-export default function Dropzone(props) {
-    const [files, setFiles] = useState([])
+export default function Dropzone({ files, setFiles }) {
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
         onDrop: (acceptedFiles) => {
