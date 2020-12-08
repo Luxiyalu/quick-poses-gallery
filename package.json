@@ -8,8 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "less": "^3.12.2",
     "next": "10.0.3",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-dropzone": "^11.2.4"
   }
 }
