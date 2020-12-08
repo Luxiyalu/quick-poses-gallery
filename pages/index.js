@@ -1,8 +1,15 @@
 import Head from 'next/head'
-import { Dropzone } from '../components'
+import { useState } from 'react'
+import { Dropzone, GalleryOptions } from '../components'
 import css from './index.less'
 
 export default function Home() {
+    const [interval, setInterval] = useState()
+
+    function handleOptionChange(option, value) {
+        option === 'interval' && setInterval(value)
+    }
+
     return (
         <div className={css.container}>
             <Head>
@@ -12,7 +19,7 @@ export default function Home() {
 
             <main className={css.main}>
                 <Dropzone />
-                <GalleryOptions />
+                <GalleryOptions handleOptionChange={handleOptionChange} />
             </main>
         </div>
     )
