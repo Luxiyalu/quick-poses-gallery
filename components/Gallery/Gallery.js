@@ -1,15 +1,15 @@
 import cn from 'classnames'
 import { useEffect, useState } from 'react'
-import { useInterval } from '../../services'
 import shuffle from 'lodash/shuffle'
 import css from './Gallery.less'
 
 export default function Gallery({
-    files = [],
+    files,
     showGallery,
     paused,
     setPaused,
     activeIndex,
+    interval,
     countdown,
     stopGallery,
     moveBy,
@@ -20,17 +20,14 @@ export default function Gallery({
         setShuffledFiles(shuffle(files))
     }, [files])
 
-    useEffect(() => {
-        if (countdown <= 0) moveBy(1)
-    }, [countdown])
-
     return (
         <section className={cn(css.gallery, { [css.showGallery]: showGallery })}>
             <h2 className={css.counter}>
                 {activeIndex + 1}/{files.length}
-                <br />
-                <span>Countdown: {countdown}</span>
             </h2>
+            <p className={css.countdown}>
+                {new Date(countdown * 1000).toISOString().slice(countdown > 3600 ? 11 : 14, 19)}
+            </p>
 
             {shuffledFiles.map((file, i) => (
                 <div
@@ -42,11 +39,26 @@ export default function Gallery({
             ))}
 
             <div className={css.controls}>
-                <button onClick={() => moveBy(-1)}>{'<'}</button>
-                <button onClick={() => setPaused(!paused)}>{paused ? 'Play' : 'Pause'}</button>
-                <button onClick={() => stopGallery()}>Stop</button>
-                <button onClick={() => moveBy(1)}>{'>'}</button>
+                <button onClick={() => moveBy(-1)} title="Left">
+                    {'<'}
+                </button>
+                <button onClick={() => setPaused(!paused)} title="Space">
+                    {paused ? 'Play' : 'Pause'}
+                </button>
+                <button onClick={() => stopGallery()} title="Q">
+                    Stop
+                </button>
+                <button onClick={() => moveBy(1)} title="Right">
+                    {'>'}
+                </button>
             </div>
+
+            {/* <div className={css.progressContainer}>
+                <div
+                    className={css.progress}
+                    style={{ width: `${Math.round(100 - (countdown / interval) * 100)}%` }}
+                />
+            </div> */}
         </section>
     )
 }

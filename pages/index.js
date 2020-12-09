@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import { useState } from 'react'
 import { useInterval } from '../services'
+import { useCallback, useState, useEffect } from 'react'
 import { Dropzone, GalleryOptions, Gallery } from '../components'
 import css from './index.less'
 
@@ -20,23 +20,32 @@ export default function Home() {
 
         setCountdown(interval)
         setActiveIndex(0)
-        setShowGallery(true)
         setPaused(false)
+        setShowGallery(true)
     }
     const stopGallery = () => {
-        setShowGallery(false)
         setPaused(true)
+        setShowGallery(false)
     }
-    const moveBy = (delta) => {
-        const newIndex = activeIndex + delta
-        const endOfDeck = newIndex < 0 || newIndex >= files.length
+    const moveBy = useCallback(
+        (delta) => {
+            const newIndex = activeIndex + delta
+            const endOfDeck = newIndex < 0 || newIndex >= files.length
 
-        if (endOfDeck) {
-            stopGallery()
-        } else {
-            setActiveIndex(newIndex)
-        }
-        setCountdown(interval)
+            if (endOfDeck) {
+                stopGallery()
+            } else {
+                setActiveIndex(newIndex)
+            }
+            setCountdown(interval)
+        },
+        [files, activeIndex, interval],
+    )
+    const handleKeyDown = (e) => {
+        if (e.code === 'Space') setPaused((p) => !p)
+        if (e.code === 'ArrowRight') moveBy(1)
+        if (e.code === 'ArrowLeft') moveBy(-1)
+        if (e.code === 'KeyQ') stopGallery()
     }
 
     useInterval(function tick() {
@@ -44,8 +53,12 @@ export default function Home() {
         setCountdown(countdown - 1)
     }, 1000)
 
+    useEffect(() => {
+        if (countdown <= 0) moveBy(1)
+    }, [countdown])
+
     return (
-        <div className={css.container}>
+        <div onKeyDown={handleKeyDown} className={css.container}>
             <Head>
                 <title>Quick Poses Gallery</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -67,12 +80,10 @@ export default function Home() {
                     paused={paused}
                     setPaused={setPaused}
                     showGallery={showGallery}
-                    setShowGallery={setShowGallery}
-                    startGallery={startGallery}
-                    stopGallery={stopGallery}
-                    setActiveIndex={setActiveIndex}
                     activeIndex={activeIndex}
+                    interval={interval}
                     countdown={countdown}
+                    stopGallery={stopGallery}
                     moveBy={moveBy}
                 />
             </main>
