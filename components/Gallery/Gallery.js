@@ -4,43 +4,32 @@ import { useInterval } from '../../services'
 import shuffle from 'lodash/shuffle'
 import css from './Gallery.less'
 
-export default function Gallery({ files = [], interval = 1, setStarted, started }) {
+export default function Gallery({
+    files = [],
+    showGallery,
+    paused,
+    setPaused,
+    activeIndex,
+    countdown,
+    stopGallery,
+    moveBy,
+}) {
     const [shuffledFiles, setShuffledFiles] = useState([])
-    const [activeIndex, setActiveIndex] = useState(0)
-    const [paused, setPaused] = useState(false)
-    const stopGallery = () => {
-        setPaused(false)
-        setStarted(false)
-        setActiveIndex(0)
-    }
-    const moveBy = (delta) => {
-        const newIndex = activeIndex + delta
-
-        if (newIndex < 0 || newIndex >= files.length) {
-            stopGallery()
-        } else {
-            setActiveIndex(newIndex)
-        }
-    }
 
     useEffect(() => {
         setShuffledFiles(shuffle(files))
     }, [files])
 
-    useInterval(function tick() {
-        if (paused || !started || !files.length) return
-
-        if (activeIndex < files.length - 1) {
-            setActiveIndex(activeIndex + 1)
-        } else {
-            stopGallery()
-        }
-    }, interval * 1000) // TODO: use this function as second ticking by, so that pause work properly, not skipping rounds
+    useEffect(() => {
+        if (countdown <= 0) moveBy(1)
+    }, [countdown])
 
     return (
-        <section className={cn(css.gallery, { [css.started]: started })}>
+        <section className={cn(css.gallery, { [css.showGallery]: showGallery })}>
             <h2 className={css.counter}>
                 {activeIndex + 1}/{files.length}
+                <br />
+                <span>Countdown: {countdown}</span>
             </h2>
 
             {shuffledFiles.map((file, i) => (
@@ -55,7 +44,7 @@ export default function Gallery({ files = [], interval = 1, setStarted, started 
             <div className={css.controls}>
                 <button onClick={() => moveBy(-1)}>{'<'}</button>
                 <button onClick={() => setPaused(!paused)}>{paused ? 'Play' : 'Pause'}</button>
-                <button onClick={() => setStarted(false)}>Stop</button>
+                <button onClick={() => stopGallery()}>Stop</button>
                 <button onClick={() => moveBy(1)}>{'>'}</button>
             </div>
         </section>

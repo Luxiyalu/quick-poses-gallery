@@ -1,6 +1,6 @@
 import css from './GalleryOptions.less'
 
-export default function GalleryOptions({ handleOptionChange, setStarted, started }) {
+export default function GalleryOptions({ handleOptionChange, startGallery }) {
     const intervalOptions = [
         { label: '30 sec', key: 30 },
         { label: '1 min', key: 60 },
@@ -30,7 +30,7 @@ export default function GalleryOptions({ handleOptionChange, setStarted, started
                 )
             })}
 
-            <button onClick={() => setStarted(true)}>Start</button>
+            <button onClick={() => startGallery()}>Start</button>
         </section>
     )
 }
