@@ -1,0 +1,39 @@
+.gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    visibility: hidden;
+
+    &.started {
+        visibility: visible;
+    }
+
+    .counter {
+        color: white;
+        padding-left: 1rem;
+    }
+
+    .imageContainer {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+
+        &.active {
+            opacity: 1;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+}
