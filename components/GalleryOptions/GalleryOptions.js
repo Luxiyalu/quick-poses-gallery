@@ -30,7 +30,7 @@ export default function GalleryOptions({ handleOptionChange, setStarted, started
                 )
             })}
 
-            <button onClick={setStarted}>Start</button>
+            <button onClick={() => setStarted(true)}>Start</button>
         </section>
     )
 }

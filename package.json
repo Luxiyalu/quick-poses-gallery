@@ -1,20 +1,21 @@
 {
-  "name": "reference-browser",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@zeit/next-less": "^1.0.1",
-    "classnames": "^2.2.6",
-    "less": "^3.12.2",
-    "lodash": "^4.17.20",
-    "next": "10.0.3",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-dropzone": "^11.2.4"
-  }
+    "name": "reference-browser",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": ".",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "dependencies": {
+        "@zeit/next-less": "^1.0.1",
+        "classnames": "^2.2.6",
+        "less": "^3.12.2",
+        "lodash": "^4.17.20",
+        "next": "10.0.3",
+        "react": "17.0.1",
+        "react-dom": "17.0.1",
+        "react-dropzone": "^11.2.4"
+    }
 }

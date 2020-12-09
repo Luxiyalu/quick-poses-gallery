@@ -22,14 +22,17 @@ export default function Home() {
             <main className={css.main}>
                 <h1>Quick Poses Gallery</h1>
 
-                {started ? (
-                    <Gallery files={files} />
-                ) : (
-                    <Dropzone files={files} setFiles={setFiles} />
-                )}
+                <Dropzone files={files} setFiles={setFiles} />
 
                 <GalleryOptions
                     handleOptionChange={handleOptionChange}
+                    setStarted={setStarted}
+                    started={started}
+                />
+
+                <Gallery
+                    files={files}
+                    interval={interval}
                     setStarted={setStarted}
                     started={started}
                 />
