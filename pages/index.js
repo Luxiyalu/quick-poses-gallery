@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dropzone, GalleryOptions, Gallery } from '../components'
 import css from './index.less'
 
@@ -20,6 +20,8 @@ export default function Home() {
             </Head>
 
             <main className={css.main}>
+                <h1>Quick Poses Gallery</h1>
+
                 {started ? (
                     <Gallery files={files} />
                 ) : (

@@ -1,15 +1,14 @@
+import { useState } from 'react'
+import shuffle from 'lodash/shuffle'
 import css from './Gallery.less'
 
 export default function Gallery({ files }) {
+    const shuffledFiles = shuffle(files)
+    const [activeFileIndex, setActiveFileIndex] = useState(0)
+
     return (
         <section className={css.container}>
-            {files.map((file) => (
-                <div className={css.thumb} key={file.name}>
-                    <div className={css.thumbInner}>
-                        <img src={file.preview} className={css.img} />
-                    </div>
-                </div>
-            ))}
+            <img src={shuffledFiles[activeFileIndex].preview} />
         </section>
     )
 }

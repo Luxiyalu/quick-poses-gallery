@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import cn from 'classnames'
+import React, { useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import css from './Dropzone.less'
 
 export default function Dropzone({ files, setFiles }) {
-    const { getRootProps, getInputProps } = useDropzone({
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
         accept: 'image/*',
         onDrop: (acceptedFiles) => {
             setFiles(
@@ -16,14 +17,6 @@ export default function Dropzone({ files, setFiles }) {
         },
     })
 
-    const thumbs = files.map((file) => (
-        <div className={css.thumb} key={file.name}>
-            <div className={css.thumbInner}>
-                <img src={file.preview} className={css.img} />
-            </div>
-        </div>
-    ))
-
     useEffect(
         () => () => {
             // Make sure to revoke the data uris to avoid memory leaks
@@ -32,11 +25,23 @@ export default function Dropzone({ files, setFiles }) {
         [files],
     )
 
+    const thumbs = files.map((file) => (
+        <div className={css.thumb} key={file.name}>
+            <img src={file.preview} className={css.img} />
+        </div>
+    ))
+
     return (
         <section className="container">
-            <div {...getRootProps({ className: 'dropzone' })}>
+            <div
+                {...getRootProps({
+                    className: cn(css.dropzone, { [css.dragActive]: isDragActive }),
+                })}
+            >
                 <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
+                <button>Select files</button>
+                <p>Or, drop files here</p>
+                <div className={css.cover}>+</div>
             </div>
             <aside className={css.thumbsContainer}>{thumbs}</aside>
         </section>
