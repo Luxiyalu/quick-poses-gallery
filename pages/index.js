@@ -42,6 +42,7 @@ export default function Home() {
         [files, activeIndex, interval],
     )
     const handleKeyDown = (e) => {
+        console.log(e)
         if (e.code === 'Space') setPaused((p) => !p)
         if (e.code === 'ArrowRight') moveBy(1)
         if (e.code === 'ArrowLeft') moveBy(-1)
@@ -58,7 +59,7 @@ export default function Home() {
     }, [countdown])
 
     return (
-        <div onKeyDown={handleKeyDown} className={css.container}>
+        <div tabIndex={0} onKeyDown={handleKeyDown} className={css.container}>
             <Head>
                 <title>Quick Poses Gallery</title>
                 <link rel="icon" href="/favicon.ico" />
