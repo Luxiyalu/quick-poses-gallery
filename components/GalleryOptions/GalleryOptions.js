@@ -15,22 +15,27 @@ export default function GalleryOptions({ handleOptionChange, startGallery }) {
 
     return (
         <section className={css.container}>
-            {intervalOptions.map(({ label, key }, i) => {
-                return (
-                    <div key={i}>
-                        <input
-                            id={key}
-                            value={key}
-                            name="interval"
-                            type="radio"
-                            onChange={handleChange}
-                        />
-                        <label htmlFor={key}>{label}</label>
-                    </div>
-                )
-            })}
+            <h3>Interval:</h3>
+            <div className={css.intervals}>
+                {intervalOptions.map(({ label, key }, i) => {
+                    return (
+                        <label htmlFor={key} key={i}>
+                            <input
+                                id={key}
+                                value={key}
+                                name="interval"
+                                type="radio"
+                                onChange={handleChange}
+                            />
+                            {label}
+                        </label>
+                    )
+                })}
+            </div>
 
-            <button onClick={() => startGallery()}>Start</button>
+            <button className={css.startButton} onClick={() => startGallery()}>
+                Start
+            </button>
         </section>
     )
 }

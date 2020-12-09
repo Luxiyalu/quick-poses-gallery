@@ -16,6 +16,8 @@ export default function Home() {
         option === 'interval' && setInterval(value)
     }
     const startGallery = () => {
+        if (!files.length) return
+
         setCountdown(interval)
         setActiveIndex(0)
         setShowGallery(true)
