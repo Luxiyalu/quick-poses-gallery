@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import shuffle from 'lodash/shuffle'
 import { useInterval } from '../services'
 import { useCallback, useState, useEffect } from 'react'
 import { Dropzone, GalleryOptions, Gallery } from '../components'
@@ -6,6 +7,7 @@ import css from './index.less'
 
 export default function Home() {
     const [files, setFiles] = useState([])
+    const [shuffledFiles, setShuffledFiles] = useState([])
     const [activeIndex, setActiveIndex] = useState(0)
     const [showGallery, setShowGallery] = useState(false)
     const [paused, setPaused] = useState(false)
@@ -18,6 +20,7 @@ export default function Home() {
     const startGallery = () => {
         if (!files.length) return
 
+        setShuffledFiles(shuffle(files))
         setCountdown(interval)
         setActiveIndex(0)
         setPaused(false)
@@ -76,7 +79,7 @@ export default function Home() {
                 />
 
                 <Gallery
-                    files={files}
+                    files={shuffledFiles}
                     interval={interval}
                     paused={paused}
                     setPaused={setPaused}

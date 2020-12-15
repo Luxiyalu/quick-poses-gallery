@@ -1,6 +1,4 @@
 import cn from 'classnames'
-import { useEffect, useState } from 'react'
-import shuffle from 'lodash/shuffle'
 import css from './Gallery.less'
 
 export default function Gallery({
@@ -9,17 +7,10 @@ export default function Gallery({
     paused,
     setPaused,
     activeIndex,
-    interval,
     countdown,
     stopGallery,
     moveBy,
 }) {
-    const [shuffledFiles, setShuffledFiles] = useState([])
-
-    useEffect(() => {
-        setShuffledFiles(shuffle(files))
-    }, [files])
-
     return (
         <section className={cn(css.gallery, { [css.showGallery]: showGallery })}>
             <h2 className={css.counter}>
@@ -29,7 +20,7 @@ export default function Gallery({
                 {new Date(countdown * 1000).toISOString().slice(countdown > 3600 ? 11 : 14, 19)}
             </p>
 
-            {shuffledFiles.map((file, i) => (
+            {files.map((file, i) => (
                 <div
                     key={i}
                     className={cn(css.imageContainer, { [css.active]: i === activeIndex })}
