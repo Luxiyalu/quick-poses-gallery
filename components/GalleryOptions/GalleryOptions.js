@@ -4,8 +4,8 @@ export default function GalleryOptions({ handleOptionChange, startGallery }) {
     const intervalOptions = [
         { label: '30 sec', key: 30 },
         { label: '1 min', key: 60 },
-        { label: '2 min', key: 120 },
         { label: '5 min', key: 300 },
+        { label: '10 min', key: 600 },
     ]
 
     function handleChange(e) {
