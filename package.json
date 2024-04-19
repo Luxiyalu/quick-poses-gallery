@@ -9,13 +9,9 @@
         "start": "next start"
     },
     "dependencies": {
-        "@zeit/next-less": "^1.0.1",
-        "classnames": "^2.2.6",
-        "less": "^3.12.2",
-        "lodash": "^4.17.20",
-        "next": "10.0.3",
-        "react": "17.0.1",
-        "react-dom": "17.0.1",
-        "react-dropzone": "^11.2.4"
+        "classnames": "^2.5.1",
+        "lodash": "^4.17.21",
+        "next": "^14.2.2",
+        "react-dropzone": "^14.2.3"
     }
 }

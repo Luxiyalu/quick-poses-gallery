@@ -3,7 +3,7 @@ import shuffle from 'lodash/shuffle'
 import { useInterval } from '../services'
 import { useCallback, useState, useEffect } from 'react'
 import { Dropzone, GalleryOptions, Gallery } from '../components'
-import css from './index.less'
+import css from './index.module.css'
 
 export default function Home() {
     const [files, setFiles] = useState([])
@@ -69,7 +69,7 @@ export default function Home() {
             </Head>
 
             <main className={css.main}>
-                <h1>Quick Poses Gallery</h1>
+                <h1 className={css.title}>Quick Poses Gallery</h1>
 
                 <Dropzone files={files} setFiles={setFiles} />
 
@@ -85,7 +85,6 @@ export default function Home() {
                     setPaused={setPaused}
                     showGallery={showGallery}
                     activeIndex={activeIndex}
-                    interval={interval}
                     countdown={countdown}
                     stopGallery={stopGallery}
                     moveBy={moveBy}

@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import css from './Gallery.less'
+import css from './Gallery.module.css'
 
 export default function Gallery({
     files,
@@ -25,7 +25,7 @@ export default function Gallery({
                     key={i}
                     className={cn(css.imageContainer, { [css.active]: i === activeIndex })}
                 >
-                    <img src={file.preview} />
+                    <img className={css.imageInContainer} src={file.preview} />
                 </div>
             ))}
 

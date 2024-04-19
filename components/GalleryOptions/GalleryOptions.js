@@ -1,4 +1,4 @@
-import css from './GalleryOptions.less'
+import css from './GalleryOptions.module.css'
 
 export default function GalleryOptions({ handleOptionChange, startGallery }) {
     const intervalOptions = [
@@ -19,8 +19,9 @@ export default function GalleryOptions({ handleOptionChange, startGallery }) {
             <div className={css.intervals}>
                 {intervalOptions.map(({ label, key }, i) => {
                     return (
-                        <label htmlFor={key} key={i}>
+                        <label className={css.intervalsLabel} htmlFor={key} key={i}>
                             <input
+                                className={css.intervalInput}
                                 id={key}
                                 value={key}
                                 name="interval"

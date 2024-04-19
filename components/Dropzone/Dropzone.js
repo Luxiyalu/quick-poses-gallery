@@ -1,11 +1,11 @@
 import cn from 'classnames'
 import React, { useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
-import css from './Dropzone.less'
+import css from './Dropzone.module.css'
 
 export default function Dropzone({ files, setFiles }) {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        accept: 'image/*',
+        accept: { 'image/*': ['.jpeg', '.jpg', '.png'] },
         onDrop: (acceptedFiles) => {
             setFiles(
                 acceptedFiles.map((file) =>
