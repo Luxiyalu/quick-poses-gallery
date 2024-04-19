@@ -14,4 +14,4 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 ## Deployment
 
-This repo is auto deployed to [Vercel Platform](https://vercel.com/) on master push. It's set up in a similar way to heroku.
+This repo is auto deployed to [Vercel Platform](https://vercel.com/) on `main` branch push. It's set up in a similar way to heroku.
