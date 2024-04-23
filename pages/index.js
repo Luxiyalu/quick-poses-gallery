@@ -36,7 +36,7 @@ export default function Home() {
     const moveBy = useCallback(
         (delta) => {
             const newIndex = activeIndex + delta
-            const endOfDeck = newIndex < 0 || newIndex >= files.length
+            const endOfDeck = newIndex >= files.length
 
             if (endOfDeck) {
                 stopGallery()
