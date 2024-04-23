@@ -20,6 +20,9 @@ export default function Home() {
     const startGallery = () => {
         if (!files.length) return
 
+        // move focus from start button to div so we can detect keydown
+        document.getElementById('container').focus()
+
         setShuffledFiles(shuffle(files))
         setCountdown(interval)
         setActiveIndex(0)
@@ -45,11 +48,10 @@ export default function Home() {
         [files, activeIndex, interval],
     )
     const handleKeyDown = (e) => {
-        console.log(e)
         if (e.code === 'Space') setPaused((p) => !p)
         if (e.code === 'ArrowRight') moveBy(1)
         if (e.code === 'ArrowLeft') moveBy(-1)
-        if (e.code === 'KeyQ') stopGallery()
+        if (e.code === 'KeyQ' || e.code == 'Escape') stopGallery()
     }
 
     useInterval(function tick() {
@@ -62,7 +64,7 @@ export default function Home() {
     }, [countdown])
 
     return (
-        <div tabIndex={0} onKeyDown={handleKeyDown} className={css.container}>
+        <div id="container" tabIndex={0} onKeyDown={handleKeyDown} className={css.container}>
             <Head>
                 <title>Quick Poses Gallery</title>
                 <link rel="icon" href="/favicon.ico" />
