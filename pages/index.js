@@ -36,9 +36,9 @@ export default function Home() {
     const moveBy = useCallback(
         (delta) => {
             const newIndex = activeIndex + delta
-            const endOfDeck = newIndex >= files.length
-
-            if (endOfDeck) {
+            if (newIndex < 0) {
+                return // stop at the first ref
+            } else if (newIndex >= files.length) {
                 stopGallery()
             } else {
                 setActiveIndex(newIndex)
