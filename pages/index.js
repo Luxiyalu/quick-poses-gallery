@@ -16,7 +16,7 @@ export default function Home() {
     const [interval, setInterval] = useState(1)
     const [countdown, setCountdown] = useState(interval)
     const classMode = [Array(10).fill(30), Array(5).fill(60), [300]].flat()
-    // const classMode = [3, 3, 3]
+    // const classMode = [2, 4, 6] // test
 
     const handleOptionChange = (option, value) => {
         setOption(option)
@@ -82,8 +82,9 @@ export default function Home() {
 
             if (option === 'class') {
                 const newClassProgression = classProgression + 1
-
-                setInterval(classMode[newClassProgression])
+                const newInterval = classMode[newClassProgression]
+                setInterval(newInterval)
+                setCountdown(newInterval)
                 setClassProgression(newClassProgression)
 
                 if (newClassProgression >= classMode.length) {

@@ -45,7 +45,8 @@ export default function Gallery({
                 </span>
             </h2>
             <p className={css.countdown}>
-                {new Date(countdown * 1000).toISOString().slice(countdown > 3600 ? 11 : 14, 19)}
+                {countdown &&
+                    new Date(countdown * 1000).toISOString().slice(countdown > 3600 ? 11 : 14, 19)}
             </p>
 
             {files.map((file, i) => (
