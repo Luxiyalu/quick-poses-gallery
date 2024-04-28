@@ -12,11 +12,20 @@
     visibility: visible;
 }
 
-.counter {
+h2.counter {
     color: white;
     position: absolute;
     top: 0;
+    width: 100%;
     padding-left: 1rem;
+    text-shadow: 1px 1px 5px black;
+    z-index: 100;
+}
+.totalCounter {
+    /* display: block; */
+    position: absolute;
+    padding-right: 1rem;
+    right: 0;
 }
 .countdown {
     position: absolute;
@@ -52,4 +61,19 @@
     z-index: 1000;
     bottom: 1rem;
     right: 1rem;
+}
+
+.progressContainer {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+}
+.progress {
+    -webkit-transition: width 0.5s;
+    transition: width 0.5s;
+    height: 100%;
+    background-color: grey;
 }

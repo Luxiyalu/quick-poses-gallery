@@ -11,3 +11,15 @@
     text-align: center;
     font-size: 4rem;
 }
+
+.debug {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1em;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+}
+.debug span {
+    color: white;
+    display: block;
+}
