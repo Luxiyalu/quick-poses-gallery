@@ -53,9 +53,10 @@ h2.counter {
 .imageInContainer {
     max-width: 100%;
     max-height: 100%;
+    top: 50%;
     left: 50%;
     position: absolute;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
 }
 
 .controls {
