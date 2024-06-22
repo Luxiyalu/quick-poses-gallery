@@ -1,3 +1,9 @@
+.container {
+    max-height: 400px;
+    overflow: scroll;
+    margin-bottom: 3rem;
+}
+
 .dropzone {
     flex: 1;
     display: flex;
@@ -16,6 +22,10 @@
 }
 
 .dropzone .cover {
+    display: none;
+}
+
+.dropzone.hasContent {
     display: none;
 }
 

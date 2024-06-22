@@ -32,10 +32,13 @@ export default function Dropzone({ files, setFiles }) {
     ))
 
     return (
-        <section className="container">
+        <section className={css.container}>
             <div
                 {...getRootProps({
-                    className: cn(css.dropzone, { [css.dragActive]: isDragActive }),
+                    className: cn(css.dropzone, {
+                        [css.dragActive]: isDragActive,
+                        [css.hasContent]: files.length,
+                    }),
                 })}
             >
                 <input {...getInputProps()} />
