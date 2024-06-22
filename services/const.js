@@ -1,0 +1,4 @@
+export const OPTIONS = {
+    INTERVAL_MODE: 'INTERVAL_MODE',
+    CLASS_MODE: 'CLASS_MODE',
+}

@@ -1,4 +1,5 @@
 import css from './GalleryOptions.module.css'
+import { OPTIONS } from '../../services'
 
 export default function GalleryOptions({ handleOptionChange, startGallery }) {
     const intervalOptions = [
@@ -11,10 +12,10 @@ export default function GalleryOptions({ handleOptionChange, startGallery }) {
         const { value } = e.target
         if (!handleOptionChange) return
 
-        if (value.startsWith('class')) {
-            handleOptionChange('class', value)
+        if (value === OPTIONS.CLASS_MODE) {
+            handleOptionChange(OPTIONS.CLASS_MODE, value)
         } else {
-            handleOptionChange('interval', value)
+            handleOptionChange(OPTIONS.INTERVAL_MODE, value)
         }
     }
 
@@ -24,8 +25,8 @@ export default function GalleryOptions({ handleOptionChange, startGallery }) {
             <label className={css.intervalsLabel}>
                 <input
                     className={css.intervalInput}
-                    id="classMode"
-                    value="classMode"
+                    id={OPTIONS.CLASS_MODE}
+                    value={OPTIONS.CLASS_MODE}
                     name="singleOption"
                     type="radio"
                     onChange={handleChange}

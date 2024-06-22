@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import shuffle from 'lodash/shuffle'
-import { useInterval } from '../services'
+import { OPTIONS, useInterval } from '../services'
 import { useCallback, useState, useEffect } from 'react'
 import { Dropzone, GalleryOptions, Gallery } from '../components'
 import css from './index.module.css'
@@ -21,11 +21,9 @@ export default function Home() {
     const handleOptionChange = (option, value) => {
         setOption(option)
 
-        if (option === 'interval') {
-            console.log('option interval selected:', value)
+        if (option === OPTIONS.INTERVAL_MODE) {
             setInterval(value)
-        } else if (option === 'class') {
-            console.log('option class selected:', value)
+        } else if (option === OPTIONS.CLASS_MODE) {
             setInterval(classMode[0])
         }
     }
@@ -36,9 +34,9 @@ export default function Home() {
         // move focus from start button to div so we can detect keydown
         document.getElementById('container').focus()
 
-        if (option === 'inteval') {
+        if (option === OPTIONS.INTERVAL_MODE) {
             setCountdown(interval)
-        } else if (option === 'class') {
+        } else if (option === OPTIONS.CLASS_MODE) {
             setClassProgression(0)
             setInterval(classMode[0])
             setCountdown(classMode[0])
@@ -82,7 +80,7 @@ export default function Home() {
         if (countdown <= 0) {
             moveBy(1)
 
-            if (option === 'class') {
+            if (option === OPTIONS.CLASS_MODE) {
                 const newClassProgression = classProgression + 1
                 const newInterval = classMode[newClassProgression]
                 setInterval(newInterval)
