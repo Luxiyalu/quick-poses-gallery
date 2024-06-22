@@ -22,8 +22,10 @@ export default function Home() {
         setOption(option)
 
         if (option === 'interval') {
+            console.log('option interval selected:', value)
             setInterval(value)
         } else if (option === 'class') {
+            console.log('option class selected:', value)
             setInterval(classMode[0])
         }
     }
@@ -95,6 +97,7 @@ export default function Home() {
     }, [countdown, classProgression])
 
     return (
+        // id is here for setting focus
         <div id="container" tabIndex={0} onKeyDown={handleKeyDown} className={css.container}>
             <Head>
                 <title>Quick Poses Gallery</title>
