@@ -3,6 +3,7 @@ import { OPTIONS } from '../../services'
 
 export default function GalleryOptions({ handleOptionChange, startGallery }) {
     const intervalOptions = [
+        { label: '10 sec', key: 10 },
         { label: '30 sec', key: 30 },
         { label: '1 min', key: 60 },
         { label: '5 min', key: 300 },
