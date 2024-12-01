@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import css from './Gallery.module.css'
+import { OPTIONS } from '../../services'
 import { useState, useEffect } from 'react'
 
 export default function Gallery({
@@ -19,7 +20,7 @@ export default function Gallery({
     const [progress, setProgress] = useState(0)
 
     useEffect(() => {
-        if (option !== 'class') {
+        if (option !== OPTIONS.CLASS_MODE) {
             return
         }
 
@@ -73,7 +74,7 @@ export default function Gallery({
                 </button>
             </div>
 
-            {option === 'class' && (
+            {option === OPTIONS.CLASS_MODE && (
                 <div className={css.progressContainer}>
                     <div className={css.progress} style={{ width: `${progress}%` }} />
                 </div>
