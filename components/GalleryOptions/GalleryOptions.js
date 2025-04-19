@@ -6,6 +6,7 @@ export default function GalleryOptions({ handleOptionChange, startGallery }) {
         { label: '10 sec', key: 10 },
         { label: '30 sec', key: 30 },
         { label: '1 min', key: 60 },
+        { label: '2 min', key: 120 },
         { label: '5 min', key: 300 },
     ]
 
