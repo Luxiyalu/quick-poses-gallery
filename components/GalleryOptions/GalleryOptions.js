@@ -1,7 +1,7 @@
 import css from './GalleryOptions.module.css'
 import { OPTIONS } from '../../services'
 
-export default function GalleryOptions({ handleOptionChange, startGallery }) {
+export default function GalleryOptions({ handleOptionChange, startGallery, selectedOption }) {
     const intervalOptions = [
         { label: '10 sec', key: 10 },
         { label: '30 sec', key: 30 },
@@ -53,7 +53,11 @@ export default function GalleryOptions({ handleOptionChange, startGallery }) {
                     )
                 })}
             </div>
-            <button className={css.startButton} onClick={() => startGallery()}>
+            <button
+                className={css.startButton}
+                onClick={() => startGallery()}
+                disabled={!selectedOption}
+            >
                 Start
             </button>
         </section>

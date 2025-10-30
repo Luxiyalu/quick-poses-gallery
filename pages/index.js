@@ -108,6 +108,7 @@ export default function Home() {
                 <Dropzone files={files} setFiles={setFiles} />
 
                 <GalleryOptions
+                    selectedOption={option}
                     startGallery={startGallery}
                     handleOptionChange={handleOptionChange}
                 />
